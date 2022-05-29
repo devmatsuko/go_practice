@@ -1,0 +1,45 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+// defer
+// 関数の終了時に処理を実行する
+
+func TestDefer() {
+	// deferは最後に実行する
+	defer fmt.Println("END")
+	fmt.Println("START")
+}
+
+func RunDefer() {
+	// 3 2 1の順に実行される
+	defer fmt.Println("1")
+	defer fmt.Println("2")
+	defer fmt.Println("3")
+}
+
+func main() {
+	TestDefer()
+
+	file.Write([]byte("Hello\n"))
+
+	// 複数のdeferを定義するためには無名関数を使う
+	defer func() {
+		fmt.Println("1")
+		fmt.Println("2")
+		fmt.Println("3")
+	}()
+
+	RunDefer()
+
+	file, err := os.Create("test.txt")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer file.Close()
+
+	file.Write([]byte("Hello"))
+
+}
